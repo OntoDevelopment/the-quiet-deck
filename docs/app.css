@@ -1,0 +1,26 @@
+body {
+    background-color: #eee;
+}
+
+h2 {
+    color: #777;
+    font-size: 1.2em;
+}
+
+#card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    min-height: 35vh;
+    min-width: 25vh;
+    text-align: center;
+    font-size: 22px;
+}
+
+#card .season {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+}
