@@ -1,11 +1,7 @@
-let seed,
-    turn,
-    cards = [],
-    card;
-const deck = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
+let seed, turn, card, cards = [];
 const seasons = {
     Spring: "&hearts;",
-    Summer: "&diamonds;",
+    Summer: "&#x25C6;",
     Autumn: "&clubs;",
     Winter: "&spades;",
 };
@@ -18,6 +14,13 @@ $(document).ready(function () {
         $(".season").text(card.season);
         $(".suit").html(seasons[card.season]);
         $(".value").text(card.value);
+
+        for(const idx in card.options){
+            if(idx > 0){
+                $(".card-text").append($("<or />"));
+            }
+            $(".card-text").append($("<div>").addClass("option").html(card.options[idx]));
+        }
 
         $("#share").val(window.location.href);
 
@@ -47,12 +50,13 @@ function appSetup() {
     }
     turn = getTurn();
 
-    // for each season, add the 13 cards as new Card objects to the cards array
-    for (const season in seasons) {
-        shuffle(deck, seed);
-        deck.forEach((value) => {
-            cards.push(new Card(value, season));
-        });
+    // shuffle the season and 
+    for (const season in window.all_cards) {
+        shuffle(window.all_cards[season], seed);
+        for(const idx in window.all_cards[season]) {
+            window.all_cards[season][idx].season = season;
+            cards.push(window.all_cards[season][idx]);
+        }
     }
 
     card = cards[turn - 1];
@@ -135,12 +139,5 @@ function copyurl() {
     share.select();
     share.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(share.value);
-    $('#copied').hide().fadeIn(1000).fadeOut(1000);
-}
-
-class Card {
-    constructor(value, season) {
-        this.value = value;
-        this.season = season;
-    }
+    $("#copied").hide().fadeIn(1000).fadeOut(1000);
 }

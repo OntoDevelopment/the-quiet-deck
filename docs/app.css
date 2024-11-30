@@ -2,7 +2,11 @@ body {
     background-color: #eee;
 }
 
-h2 {
+h1 {
+    font-weight: bold;
+}
+
+h3 {
     color: #777;
     font-size: 1.2em;
 }
@@ -13,14 +17,34 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 10px;
     padding: 20px;
-    min-height: 35vh;
-    min-width: 25vh;
+    width: 100%;
     text-align: center;
     font-size: 22px;
 }
 
-#card .season {
-    display: block;
-    font-size: 1.2em;
+@media screen and (min-width: 500px) {
+    #card {
+        max-width: 500px;
+    }
+}
+
+.card-title {
+    font-size: 1.4em;
     font-weight: bold;
+}
+
+or {
+    display: block;
+    border-bottom: 1px solid #777;
+    position: relative;
+    margin: 1em 0;
+}
+or::after {
+    content: "OR";
+    background-color: #fff;
+    padding: 0 10px;
+    position: absolute;
+    line-height: 1em;
+    top: -.5em;
+    color: #777;
 }
